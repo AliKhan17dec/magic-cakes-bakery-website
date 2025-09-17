@@ -1,0 +1,77 @@
+import React from 'react';
+import { FaRegSmile, FaRegClock } from "react-icons/fa";// or use other icon libraries like 'react-icons'
+import { FiStar } from "react-icons/fi";
+
+const AboutUsSection = () => {
+  return (
+    <section className="py-16 bg-white">
+  <div className="container mx-auto px-4 md:px-8">
+    {/* Main Content Row — Balanced Layout */}
+    <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      {/* Left Side - Text Content */}
+      <div className="md:w-1/2 text-left space-y-6">
+        {/* Title */}
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-playfair">
+          About Us
+        </h2>
+
+        {/* Description */}
+        <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+          Welcome To [Name Shop]! We Are Passionate About Baking The Finest Cakes And Pastries, Using Only The Freshest Ingredients. Our Journey Began [Tahun Dimulai], And Since Then, We Have Been Dedicated To Delivering Happiness Through Our Delicious Bakes.
+        </p>
+
+        {/* Read More Link */}
+        <a
+          href="#"
+          className="text-[#FF5C77] text-sm font-medium flex items-center hover:underline mt-2"
+        >
+          Read More
+          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      {/* Right Side - Chef Image */}
+      <div className="md:w-1/2 flex justify-end">
+        <img
+          src="/home/pngtree-pink-tiered-wedding-cake-png-image_19076795-removebg-preview.png"
+          alt="Fresh Strawberry Cake"
+          className="w-full max-w-[400px] h-auto rounded-lg object-cover"
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* Features Row */}
+  <div className="container mx-auto px-4 mt-12">
+    <div className="mx-auto flex flex-wrap justify-center gap-8 md:gap-12">
+      {[
+        {
+          icon: <FaRegSmile className="text-[#FF5C77]" size={20} />,
+          title: 'Delicious, Fresh, and Natural',
+        },
+        {
+          icon: <FaRegClock className="text-[#FF5C77]" size={20} />,
+          title: 'Custom Cakes For Every Occasion',
+        },
+        {
+          icon: <FiStar className="text-[#FF5C77]" size={20} />,
+          title: 'Premium Ingredients & Secret Recipes',
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="flex items-center space-x-3 text-center p-3 rounded-full w-fit"
+        >
+          <div className="p-2 bg-white rounded-full">{item.icon}</div>
+          <span className="text-sm font-medium text-gray-700">{item.title}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+  );
+};
+
+export default AboutUsSection;
