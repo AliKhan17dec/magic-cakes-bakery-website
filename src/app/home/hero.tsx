@@ -6,7 +6,7 @@ export default function Hero() {
     <main className="pt-14 bg-white"> {/* padding to avoid overlap with header */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
-              <div className="space-y-8 mx-auto max-lg:mt-12">
+              <div className="space-y-8 mx-auto max-lg:mt-20">
                 <div className="space-y-6">
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 leading-tight font-playfair">
                     Confectionery

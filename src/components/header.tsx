@@ -20,7 +20,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation — hidden on mobile */}
-          <nav className="hidden md:flex space-x-8 text-lg">
+          <nav className="hidden md:flex space-x-8 text-md">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium">
               Home
             </a>
@@ -42,7 +42,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             {/* Cart Icon — visible on all screens */}
             <button className="p-2 text-gray-700 hover:text-gray-900">
-              <FaShoppingCart className="w-5 h-5" />
+              <FaShoppingCart className="w-7 h-7" />
             </button>
 
             {/* Mobile Menu Button — only on mobile */}

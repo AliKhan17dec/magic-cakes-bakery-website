@@ -6,6 +6,7 @@ import CatalogSection from "./home/catalog"
 import AdvantagesSection from "./home/advantagesection"
 import AboutUsSection from "./home/aboutus"
 import CustomerTestimonials from "./home/testimonial"
+import HowItWorks from "./home/howitworks"
 
 
 export default function CakeShopPage() {
@@ -13,6 +14,7 @@ export default function CakeShopPage() {
     <div className="relative min-h-screen bg-gray-50">
       
       <Hero />
+      <HowItWorks />
       <CatalogSection />
       <AdvantagesSection />
       <AboutUsSection />
