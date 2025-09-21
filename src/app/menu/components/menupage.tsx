@@ -62,7 +62,7 @@ export default function CakesPage() {
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
   // Filter and sort cakes
-  let filteredCakes = cakes.filter((cake) => cake.category === selectedCategory);
+  const filteredCakes = cakes.filter((cake) => cake.category === selectedCategory);
 
   if (sortOption === "price-asc") {
     filteredCakes.sort((a, b) => {

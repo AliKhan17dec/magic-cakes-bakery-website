@@ -85,7 +85,7 @@ export default function HowItWorks() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto text-pretty leading-relaxed">
-            Get your favorite treats delivered in three simple steps. It's that easy and delicious!
+            Get your favorite treats delivered in three simple steps. Its that easy and delicious!
           </p>
         </div>
 
