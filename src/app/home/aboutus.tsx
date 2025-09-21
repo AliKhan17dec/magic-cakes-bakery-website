@@ -11,19 +11,21 @@ const AboutUsSection = () => {
       {/* Left Side - Text Content */}
       <div className="md:w-1/2 text-left space-y-6">
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-playfair">
-          About Us
-        </h2>
+        <div className="text-center mb-5">
+          <h1 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair text-left">
+            <span className="text-black">About</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Us</span>
+          </h1>
+        </div>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Welcome To [Name Shop]! We Are Passionate About Baking The Finest Cakes And Pastries, Using Only The Freshest Ingredients. Our Journey Began [Tahun Dimulai], And Since Then, We Have Been Dedicated To Delivering Happiness Through Our Delicious Bakes.
         </p>
 
         {/* Read More Link */}
         <a
           href="#"
-          className="text-[#FF5C77] text-sm font-medium flex items-center hover:underline mt-2"
+          className="text-[#FF5C77] text-md font-medium flex items-center hover:underline mt-2"
         >
           Read More
           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,15 +50,15 @@ const AboutUsSection = () => {
     <div className="mx-auto flex flex-wrap justify-center gap-8 md:gap-12">
       {[
         {
-          icon: <FaRegSmile className="text-[#FF5C77]" size={20} />,
+          icon: <FaRegSmile className="text-[#FF5C77]" size={30} />,
           title: 'Delicious, Fresh, and Natural',
         },
         {
-          icon: <FaRegClock className="text-[#FF5C77]" size={20} />,
+          icon: <FaRegClock className="text-[#FF5C77]" size={30} />,
           title: 'Custom Cakes For Every Occasion',
         },
         {
-          icon: <FiStar className="text-[#FF5C77]" size={20} />,
+          icon: <FiStar className="text-[#FF5C77]" size={30} />,
           title: 'Premium Ingredients & Secret Recipes',
         },
       ].map((item, index) => (
@@ -65,7 +67,7 @@ const AboutUsSection = () => {
           className="flex items-center space-x-3 text-center p-3 rounded-full w-fit"
         >
           <div className="p-2 bg-white rounded-full">{item.icon}</div>
-          <span className="text-sm font-medium text-gray-700">{item.title}</span>
+          <span className="text-md font-medium text-gray-700">{item.title}</span>
         </div>
       ))}
     </div>

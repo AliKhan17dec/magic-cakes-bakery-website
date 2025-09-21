@@ -41,7 +41,14 @@ const AdvantagesSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Title */}
-        <h2 className="text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-12 font-playfair">Our advantages</h2>
+        <div className="text-center mb-16">
+          <h1 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+            <span className="text-black">Our</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Advantage</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover our handcrafted collection of delicious cakes, made with love and the finest ingredients
+          </p>
+        </div>
 
         {/* Grid of advantages */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-5xl mx-auto">

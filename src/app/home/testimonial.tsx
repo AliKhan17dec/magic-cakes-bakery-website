@@ -77,7 +77,14 @@ const CustomerTestimonials = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-12 font-playfair">What Our Customers Say</h2>
+        <div className="text-center mb-16">
+          <h1 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+            <span className="text-black">What Our</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Customer's Says</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover our handcrafted collection of delicious cakes, made with love and the finest ingredients
+          </p>
+        </div>
         
         <div className="relative overflow-hidden">
           <div className="flex animate-slide-horizontal">

@@ -15,7 +15,7 @@ export default function Hero() {
                   </h1>
     
                   <p className="text-lg lg:text-xl 2xl:text-2xl text-gray-600 font-medium font-playfair">
-                    Same day cake delivery in Moscow
+                    Same day cake delivery in Canada
                   </p>
     
                   <button className="bg-[#D10000] hover:bg-transparent border-2 border-[#D10000] hover:text-[#D10000] text-white px-10 py-2 rounded-full font-medium transition-colors duration-300 text-md 2xl:text-lg">

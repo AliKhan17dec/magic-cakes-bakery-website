@@ -43,24 +43,8 @@ export default function HowItWorks() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-[#FFC0CB]">
-      {/* Top Wave */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
-        <svg
-          className="relative block w-full h-12"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-white"
-          ></path>
-        </svg>
-      </div>
-
-      {/* Animated Background Elements (Kept as-is, now on pink background) */}
+    <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-white via-[#FFE6EA]/30 to-white">
+      {/* Animated Background Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-[#FFE6EA]/50 rounded-full blur-3xl animate-float" />
       <div
         className="absolute bottom-20 right-10 w-40 h-40 bg-[#FF5C77]/20 rounded-full blur-3xl animate-float"
@@ -71,14 +55,14 @@ export default function HowItWorks() {
         style={{ animationDelay: "2s" }}
       />
 
-      <div className="relative max-w-7xl mx-auto z-10">
+      <div className="relative max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16 animate-slide-in-up">
-          {/* <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFE6EA] rounded-full text-[#FF5C77] font-semibold text-sm mb-8 border border-[#FF5C77]/30 shadow-lg backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFE6EA] rounded-full text-[#FF5C77] font-semibold text-sm mb-8 border border-[#FF5C77]/30 shadow-lg backdrop-blur-sm">
             <Sparkles className="w-4 h-4 animate-pulse" />
             Simple Process
-          </div> */}
-          <h2 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+          </div>
+          <h2 className="text-6xl md:text-7xl font-black text-gray-900 mb-8 text-balance leading-tight">
             How it{" "}
             <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">
               Works
@@ -173,7 +157,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Call to Action */}
-        {/* <div className="text-center animate-slide-in-up" style={{ animationDelay: "600ms" }}>
+        <div className="text-center animate-slide-in-up" style={{ animationDelay: "600ms" }}>
           <button className="group relative px-12 py-5 bg-gradient-to-r from-[#FF5C77] to-[#ff4d6b] text-white text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 transform active:scale-95 border-4 border-white">
             <span className="relative z-10 flex items-center gap-3">
               Get Started Now
@@ -182,23 +166,7 @@ export default function HowItWorks() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#e5526a] to-[#d1495e] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
           <p className="text-gray-500 mt-6 text-lg">Join thousands of happy customers today!</p>
-        </div> */}
-      </div>
-
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
-        <svg
-          className="relative block w-full h-12"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-white"
-          ></path>
-        </svg>
+        </div>
       </div>
     </section>
   )
