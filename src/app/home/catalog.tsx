@@ -265,11 +265,10 @@ export default function CatalogSection() {
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm lg:text-base whitespace-nowrap animate-category-slide ${
-                    activeCategory === category
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm lg:text-base whitespace-nowrap animate-category-slide ${activeCategory === category
                       ? "bg-[#FF5C77] text-white shadow-lg hover:shadow-glow transform scale-105"
                       : "text-gray-600 hover:text-[#FF5C77] hover:bg-[#FFE6EA]/50"
-                  }`}
+                    }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {category}
@@ -285,47 +284,32 @@ export default function CatalogSection() {
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FFE6EA] border-t-[#FF5C77]"></div>
             </div>
           )}
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {filteredCakes.map((cake, index) => (
               <div
                 key={cake.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-magical transition-all duration-500 transform hover:-translate-y-2 cursor-pointer animate-card-entrance"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-10">
+                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-4 sm:p-6 md:p-8">
                   <Image
                     src={cake.image || "/placeholder.svg?height=300&width=300&query=delicious cake"}
                     alt={cake.name}
                     width={200}
                     height={200}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
-
-                  {/* <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      toggleFavorite(cake.id)
-                    }}
-                    className={`absolute top-4 right-4 p-2 rounded-full transition-all duration-300 ${
-                      favorites.includes(cake.id)
-                        ? "bg-[#FF5C77] text-white animate-heart-beat"
-                        : "bg-white/80 text-gray-400 hover:text-[#FF5C77] hover:bg-white"
-                    } shadow-lg backdrop-blur-sm`}
-                  >
-                    <FaHeart className="w-4 h-4" />
-                  </button> */}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="font-bold text-gray-800 text-lg mb-1 group-hover:text-[#FF5C77] transition-colors duration-300">
+                      <h3 className="font-bold text-gray-800 text-sm sm:text-lg mb-1 group-hover:text-[#FF5C77] transition-colors duration-300">
                         {cake.name}
                       </h3>
-                      <p className="text-2xl font-bold text-[#FF5C77]">{cake.price}</p>
+                      <p className="text-lg sm:text-2xl font-bold text-[#FF5C77]">{cake.price}</p>
                     </div>
                   </div>
 
@@ -334,15 +318,24 @@ export default function CatalogSection() {
                       e.stopPropagation()
                       addToCart(cake.id)
                     }}
-                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] hover:from-[#FF3B5D] hover:to-[#FF5C77] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow group/button"
+                    className="w-full flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 
+             bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] 
+             hover:from-[#FF3B5D] hover:to-[#FF5C77] 
+             text-white font-medium text-xs sm:text-sm md:text-base 
+             py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 md:px-6 
+             rounded-lg sm:rounded-xl 
+             transition-all duration-300 transform hover:scale-105 hover:shadow-glow group/button"
                   >
-                    <FaShoppingCart className="w-4 h-4 group-hover/button:animate-bounce" />
-                    Add to Cart
+                    <FaShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover/button:animate-bounce" />
+                    <span className="">Add to Cart</span>
                   </button>
+
                 </div>
               </div>
             ))}
           </div>
+          
+
         </div>
 
         <div className="flex justify-center mt-16">

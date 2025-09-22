@@ -194,20 +194,20 @@ export default function CakesPage() {
             </div>
           )}
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {filteredCakes.map((cake, index) => (
               <div
                 key={cake.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-magical transition-all duration-500 transform hover:-translate-y-2 cursor-pointer animate-card-entrance"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-10">
+                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-4 sm:p-6 md:p-8">
                   <Image
                     src={cake.image || "/placeholder.svg?height=300&width=300&query=delicious cake"}
                     alt={cake.name}
                     width={200}
                     height={200}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
 
                   {/* Favorite Button (optional) */}
@@ -228,13 +228,13 @@ export default function CakesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="font-bold text-gray-800 text-lg mb-1 group-hover:text-[#FF5C77] transition-colors duration-300">
+                      <h3 className="font-bold text-gray-800 text-sm sm:text-lg mb-1 group-hover:text-[#FF5C77] transition-colors duration-300">
                         {cake.name}
                       </h3>
-                      <p className="text-2xl font-bold text-[#FF5C77]">
+                      <p className="text-lg sm:text-2xl font-bold text-[#FF5C77]">
                         {cake.price}
                       </p>
                     </div>
@@ -245,9 +245,9 @@ export default function CakesPage() {
                       e.stopPropagation();
                       addToCart(cake.id);
                     }}
-                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] hover:from-[#FF3B5D] hover:to-[#FF5C77] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow group/button"
+                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] hover:from-[#FF3B5D] hover:to-[#FF5C77] text-white  py-2 md:py-3 md:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow group/button font-medium text-xs sm:text-sm md:text-base" 
                   >
-                    <FaShoppingCart className="w-4 h-4 group-hover/button:animate-bounce" />
+                    <FaShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover/button:animate-bounce" />
                     Add to Cart
                   </button>
                 </div>
