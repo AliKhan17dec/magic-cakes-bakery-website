@@ -12,14 +12,14 @@ const AboutUsSection = () => {
       <div className="md:w-1/2 text-left space-y-6">
         {/* Title */}
         <div className="text-center mb-5">
-          <h1 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair text-left">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair text-left">
             <span className="text-black">About</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Us</span>
           </h1>
         </div>
 
         {/* Description */}
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Welcome To [Name Shop]! We Are Passionate About Baking The Finest Cakes And Pastries, Using Only The Freshest Ingredients. Our Journey Began [Tahun Dimulai], And Since Then, We Have Been Dedicated To Delivering Happiness Through Our Delicious Bakes.
+          Welcome To Mgic Cakes! We Are Passionate About Baking The Finest Cakes And Pastries, Using Only The Freshest Ingredients. Our Journey Began 2010, And Since Then, We Have Been Dedicated To Delivering Happiness Through Our Delicious Bakes.
         </p>
 
         {/* Read More Link */}

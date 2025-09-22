@@ -46,7 +46,7 @@ const AdvantagesSection = () => {
             <span className="text-black">Our</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Advantage</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover our handcrafted collection of delicious cakes, made with love and the finest ingredients
+            Our advantage lies in our dedication: every cake is handcrafted with care for the perfect balance of flavor and quality.
           </p>
         </div>
 

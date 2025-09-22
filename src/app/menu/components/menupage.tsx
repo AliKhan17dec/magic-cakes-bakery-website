@@ -174,7 +174,7 @@ export default function CakesPage() {
 
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
             <span className="text-black">Our</span>{" "}
             <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">
               {selectedCategory}

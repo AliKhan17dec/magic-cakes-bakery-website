@@ -78,7 +78,7 @@ export default function HowItWorks() {
             <Sparkles className="w-4 h-4 animate-pulse" />
             Simple Process
           </div> */}
-          <h2 className="text-6xl md:text-7xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
             How it{" "}
             <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">
               Works
