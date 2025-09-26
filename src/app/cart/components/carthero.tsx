@@ -103,10 +103,10 @@ export default function CartPage() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-5 text-balance leading-tight font-playfair">
             <span className="text-black">Your</span> <span className="bg-gradient-to-r from-[#FF5C77] to-[#ff7a8f] bg-clip-text text-transparent animate-pulse">Cart</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your cart is waiting — sweet handcrafted cakes are almost yours
           </p>
         </div>
