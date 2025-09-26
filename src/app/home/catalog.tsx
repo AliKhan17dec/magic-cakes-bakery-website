@@ -266,8 +266,8 @@ export default function CatalogSection() {
                   key={category}
                   onClick={() => handleCategoryChange(category)}
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm lg:text-base whitespace-nowrap animate-category-slide ${activeCategory === category
-                      ? "bg-[#FF5C77] text-white shadow-lg hover:shadow-glow transform scale-105"
-                      : "text-gray-600 hover:text-[#FF5C77] hover:bg-[#FFE6EA]/50"
+                    ? "bg-[#FF5C77] text-white shadow-lg hover:shadow-glow transform scale-105"
+                    : "text-gray-600 hover:text-[#FF5C77] hover:bg-[#FFE6EA]/50"
                     }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -284,14 +284,14 @@ export default function CatalogSection() {
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FFE6EA] border-t-[#FF5C77]"></div>
             </div>
           )}
-<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {filteredCakes.map((cake, index) => (
               <div
                 key={cake.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-magical transition-all duration-500 transform hover:-translate-y-2 cursor-pointer animate-card-entrance"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-4 sm:p-6 md:p-8">
+                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-2 sm:p-4 md:p-8">
                   <Image
                     src={cake.image || "/placeholder.svg?height=300&width=300&query=delicious cake"}
                     alt={cake.name}
@@ -334,7 +334,7 @@ export default function CatalogSection() {
               </div>
             ))}
           </div>
-          
+
 
         </div>
 

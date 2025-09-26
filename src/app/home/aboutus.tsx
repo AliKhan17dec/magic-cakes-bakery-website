@@ -23,7 +23,7 @@ const AboutUsSection = () => {
         </p>
 
         {/* Read More Link */}
-        <a
+        {/* <a
           href="#"
           className="text-[#FF5C77] text-md font-medium flex items-center hover:underline mt-2"
         >
@@ -31,7 +31,7 @@ const AboutUsSection = () => {
           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </a>
+        </a> */}
       </div>
 
       {/* Right Side - Chef Image */}

@@ -41,7 +41,7 @@ export default function Hero() {
               <div className="relative -mt-14"> {/* shift image up to overlap header */}
                 <div className="relative z-10">
                   <Image
-                    src="/Group 9.png"
+                    src="/Group 9.webp"
                     alt="Elegant chocolate layer cake with decorative flowers on a white cake stand"
                     width={600}
                     height={600}

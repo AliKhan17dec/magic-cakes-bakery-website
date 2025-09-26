@@ -201,7 +201,7 @@ export default function CakesPage() {
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-magical transition-all duration-500 transform hover:-translate-y-2 cursor-pointer animate-card-entrance"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-4 sm:p-6 md:p-8">
+                <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-2 sm:p-4 md:p-8">
                   <Image
                     src={cake.image || "/placeholder.svg?height=300&width=300&query=delicious cake"}
                     alt={cake.name}

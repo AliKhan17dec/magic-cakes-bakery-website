@@ -10,11 +10,10 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="text-lg font-bold mb-4">SHOP</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Shop</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Corporate Orders</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Catering</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">About us</a></li>
+              <li><a href="./" className="hover:text-white transition-colors">Home</a></li>
+              <li><a href="/catalog" className="hover:text-white transition-colors">Catalog</a></li>
+              <li><a href="/contact-us" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="cart" className="hover:text-white transition-colors">Cart</a></li>
             </ul>
           </div>
 
@@ -70,8 +69,8 @@ const Footer = () => {
           {/* Copyright & Shopify */}
           <div className="text-xs text-gray-400 text-center md:text-left space-y-2 md:space-y-0 md:flex md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0">
-              <span>Powered by Shopify</span>
-              <span>© 2025, Cannoli Queens</span>
+              {/* <span>Powered by Shopify</span> */}
+              <span>© 2025, Magic Cake</span>
             </div>
             <button className="text-gray-400 hover:text-white transition-colors mx-auto md:mx-0">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
