@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 
 interface CartItem {
@@ -46,6 +46,7 @@ export default function CartPage() {
 
   const [showCheckout, setShowCheckout] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+    const checkoutRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -261,8 +262,17 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => setShowCheckout(!showCheckout)}
+                                    <button
+                    onClick={() => {
+                      if (!showCheckout) {
+                        setShowCheckout(true);
+                        setTimeout(() => {
+                          checkoutRef.current?.scrollIntoView({ behavior: "smooth" });
+                        }, 300);
+                      } else {
+                        setShowCheckout(false);
+                      }
+                    }}
                     disabled={cartItems.length === 0}
                     className="w-full text-white font-bold py-4 px-8 rounded-2xl hover:shadow-glow transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 group"
                     style={{ background: "linear-gradient(to right, #FF5C77, #FF5C77)" }}
@@ -286,7 +296,7 @@ export default function CartPage() {
 
           {/* Checkout Form */}
           {showCheckout && (
-            <div className="max-w-4xl mx-auto mt-16 animate-slide-in-up">
+            <div ref={checkoutRef} className="max-w-4xl mx-auto mt-16 animate-slide-in-up">
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200">
                 <h2 className="text-3xl font-bold mb-8 text-center">
                   <span className="bg-gradient-to-r from-[#FF5C77] to-[#FF5C77] bg-clip-text text-transparent">
