@@ -12,6 +12,11 @@ interface CartItem {
   category: string
 }
 
+// Define a type for CSS custom properties (Tailwind ring variables)
+interface CustomCSSProperties extends React.CSSProperties {
+  [key: `--${string}`]: string | number | undefined;
+}
+
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -63,6 +68,12 @@ export default function CartPage() {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const tax = subtotal * 0.08
   const total = subtotal + tax
+
+  // Reusable style object for Tailwind ring customization
+  const tailwindRingStyle: CustomCSSProperties = {
+    "--tw-ring-color": "#FF5C77",
+    "--tw-ring-opacity": "0.2",
+  };
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden pt-20">
@@ -293,7 +304,7 @@ export default function CartPage() {
                       <input
                         type="text"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -303,7 +314,7 @@ export default function CartPage() {
                       <input
                         type="email"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                         placeholder="Enter your email"
                       />
                     </div>
@@ -313,7 +324,7 @@ export default function CartPage() {
                       <input
                         type="tel"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                         placeholder="Enter your phone number"
                       />
                     </div>
@@ -330,7 +341,7 @@ export default function CartPage() {
                       <input
                         type="text"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                         placeholder="Enter your address"
                       />
                     </div>
@@ -341,7 +352,7 @@ export default function CartPage() {
                         <input
                           type="text"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                          style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                          style={tailwindRingStyle}
                           placeholder="City"
                         />
                       </div>
@@ -350,7 +361,7 @@ export default function CartPage() {
                         <input
                           type="text"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                          style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                          style={tailwindRingStyle}
                           placeholder="ZIP"
                         />
                       </div>
@@ -361,7 +372,7 @@ export default function CartPage() {
                       <input
                         type="date"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                       />
                     </div>
                   </div>
@@ -377,7 +388,7 @@ export default function CartPage() {
                       <input
                         type="text"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                        style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                        style={tailwindRingStyle}
                         placeholder="1234 5678 9012 3456"
                       />
                     </div>
@@ -388,7 +399,7 @@ export default function CartPage() {
                         <input
                           type="text"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                          style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                          style={tailwindRingStyle}
                           placeholder="MM/YY"
                         />
                       </div>
@@ -397,7 +408,7 @@ export default function CartPage() {
                         <input
                           type="text"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
-                          style={{ "--tw-ring-color": "#FF5C77", "--tw-ring-opacity": "0.2" } as any}
+                          style={tailwindRingStyle}
                           placeholder="123"
                         />
                       </div>
