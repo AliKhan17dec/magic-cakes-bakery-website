@@ -297,34 +297,34 @@ export default function CartPage() {
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Personal Information */}
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold mb-4">Personal Information</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-black">Personal Information</h3>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Full Name</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Full Name</label>
                         <input
                           type="text"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                           style={tailwindRingStyle}
                           placeholder="Enter your full name"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Email</label>
                         <input
                           type="email"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                           style={tailwindRingStyle}
                           placeholder="Enter your email"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium mb-2">Phone</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Phone</label>
                         <input
                           type="tel"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                           style={tailwindRingStyle}
                           placeholder="Enter your phone number"
                         />
@@ -334,14 +334,14 @@ export default function CartPage() {
 
                   {/* Delivery Information */}
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold mb-4">Delivery Information</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-black">Delivery Information</h3>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Address</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Address</label>
                         <input
                           type="text"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-700"
                           style={tailwindRingStyle}
                           placeholder="Enter your address"
                         />
@@ -349,19 +349,19 @@ export default function CartPage() {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium mb-2">City</label>
+                          <label className="block text-sm font-medium mb-2 text-gray-700">City</label>
                           <input
                             type="text"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                             style={tailwindRingStyle}
                             placeholder="City"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2">ZIP Code</label>
+                          <label className="block text-sm font-medium mb-2 text-gray-700">ZIP Code</label>
                           <input
                             type="text"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                             style={tailwindRingStyle}
                             placeholder="ZIP"
                           />
@@ -369,10 +369,10 @@ export default function CartPage() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium mb-2">Delivery Date</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Delivery Date</label>
                         <input
                           type="date"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                           style={tailwindRingStyle}
                         />
                       </div>
@@ -381,14 +381,14 @@ export default function CartPage() {
 
                   {/* Payment Information */}
                   <div className="col-span-1 sm:col-span-2 space-y-6">
-                    <h3 className="text-xl font-semibold mb-4">Payment Information</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-black">Payment Information</h3>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Card Number</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">Card Number</label>
                         <input
                           type="text"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                           style={tailwindRingStyle}
                           placeholder="1234 5678 9012 3456"
                         />
@@ -396,10 +396,10 @@ export default function CartPage() {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium mb-2">Expiry</label>
+                          <label className="block text-sm font-medium mb-2 text-gray-700">Expiry</label>
                           <input
                             type="text"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                             style={tailwindRingStyle}
                             placeholder="MM/YY"
                           />
@@ -408,7 +408,7 @@ export default function CartPage() {
                           <label className="block text-sm font-medium mb-2">CVV</label>
                           <input
                             type="text"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:border-[#FF5C77] focus:ring-2 transition-all duration-300 text-gray-800"
                             style={tailwindRingStyle}
                             placeholder="123"
                           />
