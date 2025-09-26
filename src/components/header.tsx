@@ -88,7 +88,7 @@ export default function Header() {
               <button
                 onClick={toggleMenu}
                 className={`p-2 focus:outline-none ${
-                  isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white hover:text-gray-200"
+                  isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-700 hover:text-gray-900"
                 }`}
                 aria-label="Toggle menu"
               >
