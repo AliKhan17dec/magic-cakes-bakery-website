@@ -93,7 +93,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <main className="relative min-h-screen bg-white overflow-hidden max-md:pt-24">
+    <main className="relative min-h-screen bg-white overflow-hidden max-lg:pt-32">
       <div className="absolute inset-0 opacity-30">
         <div
           className="absolute inset-0"
@@ -125,7 +125,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 h-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen lg:h-screen">
           {/* Left Content */}
           <div
             className={`flex items-center justify-center px-6 lg:px-12 transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
