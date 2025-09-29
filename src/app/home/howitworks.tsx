@@ -45,7 +45,7 @@ export default function HowItWorks() {
   return (
     <section className="relative py-24 px-4 overflow-hidden bg-[#FFC0CB]">
       {/* Top Wave */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
+      {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-12"
           data-name="Layer 1"
@@ -58,7 +58,7 @@ export default function HowItWorks() {
             className="fill-white"
           ></path>
         </svg>
-      </div>
+      </div> */}
 
       {/* Animated Background Elements (Kept as-is, now on pink background) */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-[#FFE6EA]/50 rounded-full blur-3xl animate-float" />
@@ -186,7 +186,7 @@ export default function HowItWorks() {
       </div>
 
       {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
         <svg
           className="relative block w-full h-12"
           data-name="Layer 1"
@@ -199,7 +199,7 @@ export default function HowItWorks() {
             className="fill-white"
           ></path>
         </svg>
-      </div>
+      </div> */}
     </section>
   )
 }

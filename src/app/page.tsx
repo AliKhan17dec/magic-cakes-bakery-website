@@ -19,9 +19,7 @@ export default function CakeShopPage() {
       <AdvantagesSection />
       <AboutUsSection />
       <CustomerTestimonials />
-      <br />
-      <br />
-      <br />
+      
 
       
     </div>

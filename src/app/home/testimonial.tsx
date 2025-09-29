@@ -61,7 +61,7 @@ const CustomerTestimonials = () => {
   return (
     <section className="relative bg-[#FFC0CB] py-16 overflow-hidden">
       {/* Top Wave */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
+      {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-12"
           data-name="Layer 1"
@@ -74,7 +74,7 @@ const CustomerTestimonials = () => {
             className="fill-white"
           ></path>
         </svg>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
@@ -113,7 +113,7 @@ const CustomerTestimonials = () => {
       </div>
 
       {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
         <svg
           className="relative block w-full h-12"
           data-name="Layer 1"
@@ -126,7 +126,7 @@ const CustomerTestimonials = () => {
             className="fill-white"
           ></path>
         </svg>
-      </div>
+      </div> */}
 
       <style jsx>{`
         @keyframes slideHorizontal {

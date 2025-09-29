@@ -1,4 +1,4 @@
-import { FaHeart } from 'react-icons/fa';
+
 
 const Footer = () => {
   return (
