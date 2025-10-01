@@ -43,7 +43,7 @@ export default function HowItWorks() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-[#FFC0CB]">
+    <section className="relative py-24 px-4 overflow-hidden bg-[#f9dde9]">
       {/* Top Wave */}
       {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg

@@ -22,7 +22,7 @@ const AdvantagesSection = () => {
   ];
 
   return (
-    <section className="relative bg-[#FFC0CB] py-16 overflow-hidden">
+    <section className="relative bg-[#f9dde9] py-16 overflow-hidden">
       {/* Top Wave */}
       {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg
