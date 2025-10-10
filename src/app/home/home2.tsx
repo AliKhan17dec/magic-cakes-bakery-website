@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const CookieBiscottiSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const zoomLevelRef = useRef(100);
   
   // Array of background images
   const backgroundImages = [
@@ -14,14 +15,33 @@ const CookieBiscottiSection = () => {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    let zoomAnimation: number;
+    
+    const animateZoom = () => {
+      if (!isTransitioning && zoomLevelRef.current < 110) {
+        zoomLevelRef.current += 0.033; // Smooth zoom over 5 seconds (0.033% per frame ≈ 2% per second)
+        const bgElement = document.getElementById(`bg-image-${currentImageIndex}`);
+        if (bgElement) {
+          bgElement.style.transform = `scale(${zoomLevelRef.current}%)`;
+        }
+      }
+      zoomAnimation = requestAnimationFrame(animateZoom);
+    };
+
+    zoomAnimation = requestAnimationFrame(animateZoom);
+
+    // Image switching interval
+    const switchInterval = setInterval(() => {
       if (!isTransitioning) {
         handleImageChange((currentImageIndex + 1) % backgroundImages.length);
       }
     }, 5000); // Change image every 5 seconds
 
-    return () => clearInterval(interval);
-  }, [currentImageIndex, isTransitioning]); // Add dependencies
+    return () => {
+      cancelAnimationFrame(zoomAnimation);
+      clearInterval(switchInterval);
+    };
+  }, [currentImageIndex, isTransitioning]);
 
   const handleImageChange = (newIndex: number) => {
     if (isTransitioning) return;
@@ -29,6 +49,7 @@ const CookieBiscottiSection = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImageIndex(newIndex);
+      zoomLevelRef.current = 100; // Reset zoom for new image
       setIsTransitioning(false);
     }, 1000);
   };
@@ -53,15 +74,19 @@ const CookieBiscottiSection = () => {
       {/* Single Background Image Container */}
       <div className="absolute inset-0">
         <div 
+          id={`bg-image-${currentImageIndex}`}
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
-          style={{ backgroundImage: `url(${backgroundImages[currentImageIndex]})` }}
+          style={{ 
+            backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+            transform: 'scale(100%)' // Initial scale
+          }}
         />
       </div>
       
       {/* Text Box */}
-      <div className="absolute left-10 top-1/2 transform -translate-y-1/2 w-96 p-8 bg-white text-black">
+      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 p-8 bg-white text-black md:left-10 md:transform md:-translate-y-1/2 md:translate-x-0">
         <h2 className="text-xl font-bold mb-2">Freshly Baked Delights</h2>
         <div className="w-8 h-1 bg-black mb-4"></div>
         <p className="mb-6">
