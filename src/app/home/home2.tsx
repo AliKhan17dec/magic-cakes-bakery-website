@@ -9,9 +9,9 @@ const CookieBiscottiSection = () => {
   
   // Array of background images
   const backgroundImages = [
-    '/homebg/1760084831.png',
-    '/homebg/1760084321.png',
-    '/homebg/1760084205.png'
+    '/homebg/1760084831.webp',
+    '/homebg/1760084321.webp',
+    '/homebg/1760084205.webp'
   ];
 
   useEffect(() => {
