@@ -46,7 +46,7 @@ export default function Header() {
       className={`fixed top-0 left-0 w-full z-20 transition-all duration-300 ${
         isHidden ? "transform -translate-y-full" : "transform translate-y-0"
       } ${
-        isScrolled ? "bg-white" : "bg-transparent"
+        isScrolled ? "bg-white" : "bg-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
