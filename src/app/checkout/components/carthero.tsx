@@ -4,12 +4,13 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 
 interface CartItem {
-  id: string
+  id: number
   name: string
-  price: number
+  price: string
   image: string
   quantity: number
   category: string
+  option: string
 }
 
 interface CustomCSSProperties extends React.CSSProperties {
@@ -17,36 +18,24 @@ interface CustomCSSProperties extends React.CSSProperties {
 }
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "1",
-      name: "Chocolate Birthday Cake",
-      price: 45.99,
-      image: "/home/Fresh-Strawberry-Cake-removebg-preview 1 1.png",
-      quantity: 1,
-      category: "Birthday Cakes",
-    },
-    {
-      id: "2",
-      name: "Strawberry Cupcakes (6 pack)",
-      price: 24.99,
-      image: "/home/Rainbow-Cake-High-Altitude-Sprinkles-Lucky-Charms-St-Patricks-Day-007-removebg-preview 1.png",
-      quantity: 2,
-      category: "Cupcakes",
-    },
-    {
-      id: "3",
-      name: "Wedding Cake - 3 Tier",
-      price: 299.99,
-      image: "/home/Birthday_Chocolate_Dripping_cake-removebg-preview 1.png",
-      quantity: 1,
-      category: "Wedding Cakes",
-    },
-  ])
-
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [showCheckout, setShowCheckout] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-    const checkoutRef = useRef<HTMLDivElement>(null)
+  const checkoutRef = useRef<HTMLDivElement>(null)
+
+  // Load cart items from localStorage
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cartItems")
+    if (savedCart) {
+      try {
+        const items = JSON.parse(savedCart)
+        setCartItems(items)
+      } catch (error) {
+        console.error("Error loading cart items:", error)
+        setCartItems([])
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -56,16 +45,28 @@ export default function CartPage() {
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
-  const updateQuantity = (id: string, newQuantity: number) => {
+  const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
-    setCartItems((items) => items.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)))
+    const updatedCart = cartItems.map((item) => 
+      item.id === id ? { ...item, quantity: newQuantity } : item
+    )
+    setCartItems(updatedCart)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart))
   }
 
-  const removeItem = (id: string) => {
-    setCartItems((items) => items.filter((item) => item.id !== id))
+  const removeItem = (id: number) => {
+    const updatedCart = cartItems.filter((item) => item.id !== id)
+    setCartItems(updatedCart)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart))
   }
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  // Calculate prices - convert string prices like "148 $" to numbers
+  const parsePrice = (priceString: string): number => {
+    const numericValue = parseFloat(priceString.replace(' $', '').replace('$', ''))
+    return isNaN(numericValue) ? 0 : numericValue
+  }
+
+  const subtotal = cartItems.reduce((sum, item) => sum + (parsePrice(item.price) * item.quantity), 0)
   const tax = subtotal * 0.08
   const total = subtotal + tax
 
@@ -130,7 +131,7 @@ export default function CartPage() {
               ) : (
                 cartItems.map((item, index) => (
                   <div
-                    key={item.id}
+                    key={`${item.id}-${item.option}`}
                     className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200 hover:border-[#FF5C77]/30 transition-all duration-500 hover:shadow-magical animate-card-entrance relative"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
@@ -186,10 +187,13 @@ export default function CartPage() {
                             {item.name}
                           </h3>
                           <p
-                            className="text-sm text-gray-600 px-3 py-1 rounded-full inline-block mb-4 mx-auto sm:mx-0"
+                            className="text-sm text-gray-600 px-3 py-1 rounded-full inline-block mb-2 mx-auto sm:mx-0"
                             style={{ backgroundColor: "#FFE6EA" }}
                           >
                             {item.category}
+                          </p>
+                          <p className="text-sm text-gray-500 mb-4 mx-auto sm:mx-0 sm:text-left text-center">
+                            {item.option}
                           </p>
 
                           <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
@@ -219,9 +223,9 @@ export default function CartPage() {
                             {/* Price */}
                             <div className="text-right sm:text-left">
                               <p className="text-2xl font-bold" style={{ color: "#FF5C77" }}>
-                                ${(item.price * item.quantity).toFixed(2)}
+                                ${(parsePrice(item.price) * item.quantity).toFixed(2)}
                               </p>
-                              <p className="text-sm text-gray-600">${item.price.toFixed(2)} each</p>
+                              <p className="text-sm text-gray-600">${parsePrice(item.price).toFixed(2)} each</p>
                             </div>
                           </div>
                         </div>
@@ -262,7 +266,7 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                                    <button
+                  <button
                     onClick={() => {
                       if (!showCheckout) {
                         setShowCheckout(true);

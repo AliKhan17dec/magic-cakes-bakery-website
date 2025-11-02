@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Playfair, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { CartProvider } from "./context/CartContext";
 
 const playFair = Playfair({
   variable: "--font-playfair",
@@ -36,8 +37,10 @@ export default function RootLayout({
       <body
         className={`${playFair.variable} ${poppins.variable}  antialiased`}
       >
-        <Header />
-        {children}
+        
+        <CartProvider>
+          <Header />
+          {children}</CartProvider>
         <Footer />
       </body>
     </html>
