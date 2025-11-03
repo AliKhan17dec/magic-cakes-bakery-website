@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from 'next/link';
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -13,13 +13,15 @@ interface Product {
 interface CartItem extends Product {
   option: string;
   quantity: number;
+  addGreeting?: string;
+  greetingText?: string;
 }
 
 interface CartSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   productToAdd?: Product | null;
-  onCartUpdate?: () => void; // Changed to void function
+  onCartUpdate?: () => void;
 }
 
 export default function CartSidebar({
@@ -31,6 +33,8 @@ export default function CartSidebar({
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [addGreeting, setAddGreeting] = useState("");
+  const [greetingText, setGreetingText] = useState("");
 
   const optionsByCategory: Record<string, string[]> = {
     Cakes: [
@@ -40,10 +44,7 @@ export default function CartSidebar({
       "10” — serves 20–25",
     ],
     Cupcakes: ["Box of 6 cupcakes", "Box of 12 cupcakes"],
-    Cheesecakes: [
-      "4” — Mini Cheesecake",
-      "8” — Large Cheesecake",
-    ],
+    Cheesecakes: ["4” — Mini Cheesecake", "8” — Large Cheesecake"],
     Cookies: ["Box of 6", "Box of 12"],
     Tiramisu: ["5 oz", "12 oz"],
   };
@@ -53,7 +54,6 @@ export default function CartSidebar({
     if (savedCart) setCartItems(JSON.parse(savedCart));
   }, []);
 
-  // Refresh cart when sidebar opens
   useEffect(() => {
     if (isOpen) {
       const savedCart = localStorage.getItem("cartItems");
@@ -67,6 +67,8 @@ export default function CartSidebar({
     if (productToAdd) {
       setSelectedOption("");
       setQuantity(1);
+      setAddGreeting("");
+      setGreetingText("");
     }
   }, [productToAdd]);
 
@@ -81,6 +83,10 @@ export default function CartSidebar({
       ...productToAdd,
       option: selectedOption,
       quantity,
+      ...(productToAdd.category === "Cakes"  && {
+        addGreeting,
+        greetingText: addGreeting === "yes" ? greetingText : "",
+      }),
     };
 
     const existingIndex = cartItems.findIndex(
@@ -97,25 +103,21 @@ export default function CartSidebar({
 
     setCartItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-    
-    // Notify parent about cart update
-    if (onCartUpdate) {
-      onCartUpdate();
-    }
+
+    if (onCartUpdate) onCartUpdate();
 
     setSelectedOption("");
     setQuantity(1);
+    setAddGreeting("");
+    setGreetingText("");
   };
 
   const handleRemove = (index: number) => {
     const updatedCart = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-    
-    // Notify parent about cart update
-    if (onCartUpdate) {
-      onCartUpdate();
-    }
+
+    if (onCartUpdate) onCartUpdate();
   };
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -127,7 +129,10 @@ export default function CartSidebar({
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-black/40 z-40" onClick={onClose}></div>
+        <div
+          className="fixed inset-0 bg-black/40 z-40"
+          onClick={onClose}
+        ></div>
       )}
 
       <div
@@ -165,6 +170,7 @@ export default function CartSidebar({
               </div>
             </div>
 
+            {/* Option / Size Selection */}
             <div className="mb-4">
               <h4 className="font-medium mb-2 text-black">
                 Select {productType === "Cakes" ? "Cake Size" : "Option"}
@@ -192,6 +198,35 @@ export default function CartSidebar({
               </div>
             </div>
 
+            {/* Greeting Option (Only for Cakes) */}
+            {productType === "Cakes" && (
+              <div className="mb-4">
+                <h4 className="font-medium mb-2 text-black">Add Greeting?</h4>
+                <select
+                  onChange={(e) => setAddGreeting(e.target.value)}
+                  value={addGreeting}
+                  className="border rounded-md p-2 w-full text-black"
+                >
+                  <option value="">Select Option</option>
+                  <option value="yes">Yes + ($6)</option>
+                  <option value="no">No</option>
+                </select>
+
+                {addGreeting === "yes" && (
+                  <div className="mt-3">
+                    <input
+                      type="text"
+                      value={greetingText}
+                      onChange={(e) => setGreetingText(e.target.value)}
+                      placeholder="Enter greeting text..."
+                      className="border rounded-md p-2 w-full text-black"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Quantity */}
             <div className="flex items-center gap-3 mb-4">
               <button
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -220,7 +255,9 @@ export default function CartSidebar({
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-5">
           {cartItems.length === 0 ? (
-            <p className="text-gray-600 text-center mt-10">Your cart is empty.</p>
+            <p className="text-gray-600 text-center mt-10">
+              Your cart is empty.
+            </p>
           ) : (
             <div className="space-y-4">
               {cartItems.map((item, index) => (
@@ -237,7 +274,14 @@ export default function CartSidebar({
                     <div>
                       <h4 className="font-medium text-black">{item.name}</h4>
                       <p className="text-sm text-gray-600">{item.option}</p>
-                      <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                      <p className="text-sm text-gray-600">
+                        Qty: {item.quantity}
+                      </p>
+                      {item.addGreeting === "yes" && item.greetingText && (
+                        <p className="text-sm text-gray-600 italic">
+                          🎉 Greeting: “{item.greetingText}”
+                        </p>
+                      )}
                     </div>
                   </div>
                   <button
@@ -253,19 +297,18 @@ export default function CartSidebar({
         </div>
 
         {/* Footer */}
-        {/* Footer */}
-<div className="border-t bg-white p-4 flex-shrink-0">
-  {cartItems.length > 0 && (
-    <Link href="/checkout">
-      <button 
-        onClick={onClose} // Add this line to close the sidebar
-        className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition"
-      >
-        Proceed to Checkout
-      </button>
-    </Link>
-  )}
-</div>
+        <div className="border-t bg-white p-4 flex-shrink-0">
+          {cartItems.length > 0 && (
+            <Link href="/checkout">
+              <button
+                onClick={onClose}
+                className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition"
+              >
+                Proceed to Checkout
+              </button>
+            </Link>
+          )}
+        </div>
       </div>
     </>
   );

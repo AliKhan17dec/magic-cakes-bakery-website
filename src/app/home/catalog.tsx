@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import CartSidebar from "./AddToCartDialog";
+
+// Category mapping from URL slugs to display names
+const categoryMapping: { [key: string]: string } = {
+  cakes: "Cakes",
+  cupcakes: "Cupcakes",
+  cookies: "Cookies",
+  cheesecakes: "Cheesecakes",
+  tiramisu: "Tiramisu"
+};
 
 const categories = ["Cakes", "Cupcakes", "Cookies", "Cheesecakes", "Tiramisu"];
 
@@ -11,8 +21,8 @@ const products = [
   { id: 1, name: "Double Chocolate Cake", price: "148 $", image: "/home/Best-Moist-Chocolate-Cake1-1.png", category: "Cakes" },
   { id: 2, name: "Classic Vanilla Cake", price: "139 $", image: "/home/Fresh-Strawberry-Cake-1.png", category: "Cakes" },
   { id: 3, name: "Strawberry Shortake", price: "159 $", image: "/home/Birthday_Chocolate_Dripping_cake.png", category: "Cakes" },
-  { id: 4, name: "Pink Strawberry Cupcake", price: "45 $", image: "/home/cupcake1.png", category: "Cakes" },
-  { id: 5, name: "Salted Caramel Cake", price: "40 $", image: "/home/cupcake2.png", category: "Cakes" },
+  { id: 4, name: "Pink Strawberry Cupcake", price: "45 $", image: "/home/cupcake1.png", category: "Cupcakes" },
+  { id: 5, name: "Salted Caramel Cake", price: "40 $", image: "/home/cupcake2.png", category: "Cupcakes" },
   { id: 6, name: "heart shaped vintage cake", price: "25 $", image: "/home/cookie1.png", category: "Cakes" },
   { id: 7, name: "White Lambeth cake", price: "20 $", image: "/home/cookie2.png", category: "Cakes" },
   { id: 8, name: "Oreo cheesecake", price: "99 $", image: "/home/cheesecake1.png", category: "Cheesecakes" },
@@ -33,9 +43,19 @@ const products = [
 ];
 
 export default function CatalogSection() {
+  const searchParams = useSearchParams();
+  const urlCategory = searchParams.get('category');
+  
   const [activeCategory, setActiveCategory] = useState("Cakes");
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Set active category based on URL parameter on component mount
+  useEffect(() => {
+    if (urlCategory && categoryMapping[urlCategory]) {
+      setActiveCategory(categoryMapping[urlCategory]);
+    }
+  }, [urlCategory]);
 
   const filteredProducts = products.filter((p) => p.category === activeCategory);
 
@@ -84,6 +104,16 @@ export default function CatalogSection() {
               ))}
             </div>
           </nav>
+        </div>
+
+        {/* Active Category Indicator */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800">
+            {activeCategory} Collection
+          </h2>
+          <p className="text-gray-600 mt-2">
+            Showing {filteredProducts.length} products
+          </p>
         </div>
 
         {/* Product Grid */}
@@ -142,13 +172,25 @@ export default function CatalogSection() {
           ))}
         </div>
 
+        {/* Empty State */}
+        {filteredProducts.length === 0 && (
+          <div className="text-center py-16">
+            <h3 className="text-2xl font-bold text-gray-600 mb-4">
+              No products found in {activeCategory} category
+            </h3>
+            <p className="text-gray-500">
+              Please select another category or check back later for new arrivals.
+            </p>
+          </div>
+        )}
+
         {/* View All Button */}
-        <div className="flex justify-center mt-16">
+        {/* <div className="flex justify-center mt-16">
           <button className="group relative px-12 py-4 bg-transparent border-2 border-[#FF5C77] text-[#FF5C77] rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#FF5C77] hover:text-white hover:shadow-glow transform hover:scale-105 overflow-hidden">
             <span className="relative z-10">View All Cakes</span>
             <div className="absolute inset-0 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Cart Sidebar */}
