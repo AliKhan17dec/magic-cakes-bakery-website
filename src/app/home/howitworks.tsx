@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ShoppingCart, CreditCard, Package, ArrowRight, Sparkles } from "lucide-react"
+import { ShoppingCart, CreditCard, Package, ArrowRight } from "lucide-react"
 
 const steps = [
   {
@@ -28,8 +28,8 @@ const steps = [
   },
   {
     id: 3,
-    title: "Pickup",
-    description: "Pick up your fresh and delicious order right on time, hassle-free",
+    title: "Delivery & Pickup",
+    description: "Choose to get your order delivered to your doorstep or pick it up fresh and on time — hassle-free!",
     icon: Package,
     color: "from-[#FF5C77] to-[#e5526a]",
     bgColor: "bg-[#FFE6EA]",
