@@ -18,10 +18,11 @@ export default function CakeShopPage() {
       
       <CookieBiscottiSection />
       {/* <Hero /> */}
-      <HowItWorks />
+      
       {/* <CatalogSection /> */}
       <SweetCollection />
-      <AdvantagesSection />
+      <HowItWorks />
+      {/* <AdvantagesSection /> */}
       <AboutUsSection />
       <CustomerTestimonials />
       <CustomizeOrderSection />     

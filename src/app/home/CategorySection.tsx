@@ -112,10 +112,11 @@ export default function SweetCollection() {
         {/* View All Button */}
         <div className="mt-10">
           <Link href="/catalog">
-            <button className="text-sm font-medium tracking-wide text-gray-700 hover:text-black transition">
-              VIEW ALL →
-            </button>
-          </Link>
+    <button className="group relative px-12 py-4 bg-transparent border-2 border-[#FF5C77] text-[#FF5C77] rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#FF5C77] hover:text-white hover:shadow-glow transform hover:scale-105 overflow-hidden">
+      <span className="relative z-10">View All Cakes</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+    </button>
+  </Link>
         </div>
       </div>
     </section>
