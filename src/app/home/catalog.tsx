@@ -17,29 +17,140 @@ const categoryMapping: { [key: string]: string } = {
 
 const categories = ["Cakes", "Cupcakes", "Cookies", "Cheesecakes", "Tiramisu"];
 
+// Price configuration for each product and option
+const priceConfig = {
+  // Cakes
+  1: { // Double Chocolate Cake
+    "6” Petite (1 layer) — serves 4–6": 120,
+    "6” Regular (2 layers) — serves 8–10": 200,
+    "8” — serves 12–16": 250,
+    "10” — serves 20–25": 300
+  },
+  2: { // Classic Vanilla Cake
+    "6” Petite (1 layer) — serves 4–6": 110,
+    "6” Regular (2 layers) — serves 8–10": 180,
+    "8” — serves 12–16": 230,
+    "10” — serves 20–25": 280
+  },
+  3: { // Strawberry Shortake
+    "6” Petite (1 layer) — serves 4–6": 130,
+    "6” Regular (2 layers) — serves 8–10": 210,
+    "8” — serves 12–16": 260,
+    "10” — serves 20–25": 320
+  },
+  6: { // heart shaped vintage cake
+    "6” Petite (1 layer) — serves 4–6": 125,
+    "6” Regular (2 layers) — serves 8–10": 195,
+    "8” — serves 12–16": 245,
+    "10” — serves 20–25": 295
+  },
+  7: { // White Lambeth cake
+    "6” Petite (1 layer) — serves 4–6": 115,
+    "6” Regular (2 layers) — serves 8–10": 185,
+    "8” — serves 12–16": 235,
+    "10” — serves 20–25": 285
+  },
+  
+  // Cupcakes
+  4: { // Pink Strawberry Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  5: { // Salted Caramel Cake (Cupcake)
+    "Box of 6 cupcakes": 40,
+    "Box of 12 cupcakes": 75
+  },
+  10: { // Banana Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  11: { // Blueberry Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  12: { // Chocolate & Vanilla Swirl Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  13: { // Cookies & Cream Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  14: { // Hazelnut Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  15: { // Lemon Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  16: { // Pistachio Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  17: { // Raspbery Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  18: { // Salted Caramel Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  19: { // Strawberry Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  20: { // Vanilla Cupcake
+    "Box of 6 cupcakes": 45,
+    "Box of 12 cupcakes": 85
+  },
+  
+  // Cheesecakes
+  8: { // Oreo cheesecake
+    "4” — Mini Cheesecake": 60,
+    "8” — Large Cheesecake": 99
+  },
+  9: { // Biscoff cheesecake
+    "4” — Mini Cheesecake": 65,
+    "8” — Large Cheesecake": 109
+  },
+  
+  // Cookies
+  21: { // Cookies
+    "Box of 6": 25,
+    "Box of 12": 45
+  },
+  
+  // Tiramisu
+  22: { // Tiramisu
+    "5 oz": 15,
+    "12 oz": 35
+  }
+};
+
 const products = [
-  { id: 1, name: "Double Chocolate Cake", price: "148 $", image: "/home/Best-Moist-Chocolate-Cake1-1.png", category: "Cakes" },
-  { id: 2, name: "Classic Vanilla Cake", price: "139 $", image: "/home/Fresh-Strawberry-Cake-1.png", category: "Cakes" },
-  { id: 3, name: "Strawberry Shortake", price: "159 $", image: "/home/Birthday_Chocolate_Dripping_cake.png", category: "Cakes" },
-  { id: 4, name: "Pink Strawberry Cupcake", price: "45 $", image: "/home/cupcake1.png", category: "Cupcakes" },
-  { id: 5, name: "Salted Caramel Cake", price: "40 $", image: "/home/cupcake2.png", category: "Cupcakes" },
-  { id: 6, name: "heart shaped vintage cake", price: "25 $", image: "/home/cookie1.png", category: "Cakes" },
-  { id: 7, name: "White Lambeth cake", price: "20 $", image: "/home/cookie2.png", category: "Cakes" },
-  { id: 8, name: "Oreo cheesecake", price: "99 $", image: "/home/cheesecake1.png", category: "Cheesecakes" },
-  { id: 9, name: "Biscoff cheesecake", price: "109 $", image: "/home/cheesecake2.png", category: "Cheesecakes" },
-  { id: 10, name: "Banana Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 11, name: "Blueberry Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 12, name: "Chocolate & Vanilla Swirl Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 13, name: "Cookies & Cream Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 14, name: "Hazelnut Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 15, name: "Lemon Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 16, name: "Pistachio Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 17, name: "Raspbery Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 18, name: "Salted Caramel Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 19, name: "Strawberry Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 20, name: "Vanilla Cupcake", price: "89 $", image: "/home/tiramisu1.png", category: "Cupcakes" },
-  { id: 21, name: "Cookies", price: "89 $", image: "/home/tiramisu1.png", category: "Cookies" },
-  { id: 22, name: "Tiramisu", price: "89 $", image: "/home/tiramisu1.png", category: "Tiramisu" },
+  { id: 1, name: "Double Chocolate Cake", basePrice: "$120", image: "", category: "Cakes" },
+  { id: 2, name: "Classic Vanilla Cake", basePrice: "$110", image: "", category: "Cakes" },
+  { id: 3, name: "Strawberry Shortake", basePrice: "$130", image: "/home/Birthday_Chocolate_Dripping_cake.png", category: "Cakes" },
+  { id: 4, name: "Pink Strawberry Cupcake", basePrice: "$45", image: "/home/cupcake1.png", category: "Cupcakes" },
+  { id: 5, name: "Salted Caramel Cake", basePrice: "$40", image: "/home/cupcake2.png", category: "Cupcakes" },
+  { id: 6, name: "heart shaped vintage cake", basePrice: "$125", image: "/home/cookie1.png", category: "Cakes" },
+  { id: 7, name: "White Lambeth cake", basePrice: "$115", image: "/home/cookie2.png", category: "Cakes" },
+  { id: 8, name: "Oreo cheesecake", basePrice: "$60", image: "/home/cheesecake1.png", category: "Cheesecakes" },
+  { id: 9, name: "Biscoff cheesecake", basePrice: "$65", image: "/home/cheesecake2.png", category: "Cheesecakes" },
+  { id: 10, name: "Banana Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 11, name: "Blueberry Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 12, name: "Chocolate & Vanilla Swirl Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 13, name: "Cookies & Cream Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 14, name: "Hazelnut Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 15, name: "Lemon Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 16, name: "Pistachio Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 17, name: "Raspbery Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 18, name: "Salted Caramel Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 19, name: "Strawberry Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 20, name: "Vanilla Cupcake", basePrice: "$45", image: "/home/tiramisu1.png", category: "Cupcakes" },
+  { id: 21, name: "Cookies", basePrice: "$25", image: "/home/tiramisu1.png", category: "Cookies" },
+  { id: 22, name: "Tiramisu", basePrice: "$15", image: "/home/tiramisu1.png", category: "Tiramisu" },
 ];
 
 export default function CatalogSection() {
@@ -125,7 +236,7 @@ export default function CatalogSection() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image Container */}
-              <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-4 sm:p-6 md:p-8 flex-shrink-0">
+              <div className="relative aspect-square bg-gradient-to-br from-[#FFE6EA] to-[#FFE6EA]/70 overflow-hidden p-1 sm:p-1 md:p-2 flex-shrink-0">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -145,8 +256,8 @@ export default function CatalogSection() {
                       {product.name}
                     </h3>
                   </div>
-                  <p className="text-lg sm:text-xl md:text-2xl font-bold text-[#FF5C77] mt-auto">
-                    {product.price}
+                  <p className="text-lg sm:text-xl md:text-2xl font-bold text-[#FF5C77] ">
+                    {product.basePrice}
                   </p>
                 </div>
 
@@ -183,14 +294,6 @@ export default function CatalogSection() {
             </p>
           </div>
         )}
-
-        {/* View All Button */}
-        {/* <div className="flex justify-center mt-16">
-          <button className="group relative px-12 py-4 bg-transparent border-2 border-[#FF5C77] text-[#FF5C77] rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#FF5C77] hover:text-white hover:shadow-glow transform hover:scale-105 overflow-hidden">
-            <span className="relative z-10">View All Cakes</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FF5C77] to-[#FF3B5D] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </button>
-        </div> */}
       </div>
 
       {/* Cart Sidebar */}
@@ -198,6 +301,7 @@ export default function CatalogSection() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         productToAdd={selectedProduct}
+        priceConfig={priceConfig}
       />
     </div>
   );

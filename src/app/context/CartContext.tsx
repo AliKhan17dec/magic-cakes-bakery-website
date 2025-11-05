@@ -9,6 +9,7 @@ interface Product {
   price: string;
   image: string;
   category: string;
+  basePrice: string; // Add this line
 }
 
 interface CartItem {
@@ -77,11 +78,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       {children}
       {/* Only one CartSidebar instance here */}
       <CartSidebar 
-        isOpen={isCartOpen} 
-        onClose={closeCart} 
-        productToAdd={productToAdd} 
-        onCartUpdate={refreshCart} // Add this prop
-      />
+  isOpen={isCartOpen} 
+  onClose={closeCart} 
+  productToAdd={productToAdd} 
+  onCartUpdate={refreshCart}
+  priceConfig={{}}
+/>
     </CartContext.Provider>
   );
 }

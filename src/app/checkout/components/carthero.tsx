@@ -6,11 +6,28 @@ import Image from "next/image"
 interface CartItem {
   id: number
   name: string
-  price: string
   image: string
   quantity: number
   category: string
   option: string
+  unitPrice: number
+  totalPrice: number
+  basePrice?: string
+  addGreeting?: string
+  greetingText?: string
+}
+
+interface LegacyCartItem {
+  id: number
+  name: string
+  image: string
+  quantity: number
+  category: string
+  option: string
+  price: string
+  basePrice?: string
+  addGreeting?: string
+  greetingText?: string
 }
 
 interface CustomCSSProperties extends React.CSSProperties {
@@ -23,13 +40,53 @@ export default function CartPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const checkoutRef = useRef<HTMLDivElement>(null)
 
+  // Helper function to ensure cart items have the correct structure
+  
+  const normalizeCartItems = (items: (CartItem | LegacyCartItem)[]): CartItem[] => { 
+    return items.map(item => {
+      // If it's an old format item (has string price), migrate it
+      if ('price' in item && typeof item.price === 'string') {
+        const parsePrice = (priceString: string): number => {
+          const numericValue = parseFloat(priceString.replace(' $', '').replace('$', ''))
+          return isNaN(numericValue) ? 0 : numericValue
+        }
+
+        const unitPrice = parsePrice(item.price)
+        return {
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          quantity: item.quantity || 1,
+          category: item.category,
+          option: item.option,
+          unitPrice: unitPrice,
+          totalPrice: unitPrice * (item.quantity || 1),
+          basePrice: item.basePrice,
+          addGreeting: item.addGreeting,
+          greetingText: item.greetingText
+        }
+      }
+
+      // If it's already the new format, ensure numeric values
+      return {
+        ...item,
+        unitPrice: 'unitPrice' in item && typeof item.unitPrice === 'number' ? item.unitPrice : 0,
+totalPrice: 'totalPrice' in item && typeof item.totalPrice === 'number' ? item.totalPrice : 0,
+quantity: item.quantity || 1
+      }
+    })
+  }
+
   // Load cart items from localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem("cartItems")
     if (savedCart) {
       try {
         const items = JSON.parse(savedCart)
-        setCartItems(items)
+        const normalizedItems = normalizeCartItems(items)
+        setCartItems(normalizedItems)
+        // Update localStorage with normalized items
+        localStorage.setItem("cartItems", JSON.stringify(normalizedItems))
       } catch (error) {
         console.error("Error loading cart items:", error)
         setCartItems([])
@@ -47,26 +104,31 @@ export default function CartPage() {
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
-    const updatedCart = cartItems.map((item) => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    )
+
+    const updatedCart = cartItems.map((item) => {
+      if (item.id === id) {
+        const updatedItem = {
+          ...item,
+          quantity: newQuantity,
+          totalPrice: item.unitPrice * newQuantity
+        }
+        return updatedItem
+      }
+      return item
+    })
+
     setCartItems(updatedCart)
     localStorage.setItem("cartItems", JSON.stringify(updatedCart))
   }
 
-  const removeItem = (id: number) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id)
+  const removeItem = (index: number) => {
+    const updatedCart = cartItems.filter((_, i) => i !== index)
     setCartItems(updatedCart)
     localStorage.setItem("cartItems", JSON.stringify(updatedCart))
   }
 
-  // Calculate prices - convert string prices like "148 $" to numbers
-  const parsePrice = (priceString: string): number => {
-    const numericValue = parseFloat(priceString.replace(' $', '').replace('$', ''))
-    return isNaN(numericValue) ? 0 : numericValue
-  }
-
-  const subtotal = cartItems.reduce((sum, item) => sum + (parsePrice(item.price) * item.quantity), 0)
+  // Use the numeric prices directly from cart items
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.totalPrice || 0), 0)
   const tax = subtotal * 0.08
   const total = subtotal + tax
 
@@ -74,6 +136,11 @@ export default function CartPage() {
     "--tw-ring-color": "#FF5C77",
     "--tw-ring-opacity": "0.2",
   };
+
+  // Safe price formatting function
+  const formatPrice = (price: number | undefined): string => {
+    return (price || 0).toFixed(2)
+  }
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden pt-20">
@@ -131,13 +198,13 @@ export default function CartPage() {
               ) : (
                 cartItems.map((item, index) => (
                   <div
-                    key={`${item.id}-${item.option}`}
+                    key={`${item.id}-${item.option}-${index}`}
                     className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200 hover:border-[#FF5C77]/30 transition-all duration-500 hover:shadow-magical animate-card-entrance relative"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Cancel button in top-right corner (visible on all sizes) */}
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(index)}
                       className="absolute top-4 right-4 w-8 h-8 rounded-full bg-red-100 hover:bg-red-500 hover:text-white text-red-500 transition-all duration-300 flex items-center justify-center group/btn z-10"
                     >
                       <svg
@@ -196,12 +263,19 @@ export default function CartPage() {
                             {item.option}
                           </p>
 
+                          {/* Greeting text if available */}
+                          {item.addGreeting === "yes" && item.greetingText && (
+                            <p className="text-sm text-gray-600 italic mb-4 mx-auto sm:mx-0 sm:text-left text-center">
+                              🎉 Greeting: &quot;{item.greetingText}&quot;
+                            </p>
+                          )}
+
                           <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
                             {/* Quantity Controls */}
                             <div className="flex items-center gap-3 justify-center sm:justify-start">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="w-10 h-10 rounded-full hover:text-white transition-all duration-300 flex items-center justify-center font-bold text-black" 
+                                className="w-10 h-10 rounded-full hover:text-white transition-all duration-300 flex items-center justify-center font-bold text-black"
                                 style={{ backgroundColor: "#FFE6EA" }}
                                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#FF5C77")}
                                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#FFE6EA")}
@@ -223,9 +297,9 @@ export default function CartPage() {
                             {/* Price */}
                             <div className="text-right sm:text-left">
                               <p className="text-2xl font-bold" style={{ color: "#FF5C77" }}>
-                                ${(parsePrice(item.price) * item.quantity).toFixed(2)}
+                                ${formatPrice(item.totalPrice)}
                               </p>
-                              <p className="text-sm text-gray-600">${parsePrice(item.price).toFixed(2)} each</p>
+                              <p className="text-sm text-gray-600">${formatPrice(item.unitPrice)} each</p>
                             </div>
                           </div>
                         </div>
@@ -252,16 +326,16 @@ export default function CartPage() {
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between text-lg text-black">
                       <span>Subtotal</span>
-                      <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                      <span className="font-semibold">${formatPrice(subtotal)}</span>
                     </div>
                     <div className="flex justify-between text-lg text-black">
                       <span>Tax</span>
-                      <span className="font-semibold">${tax.toFixed(2)}</span>
+                      <span className="font-semibold">${formatPrice(tax)}</span>
                     </div>
                     <div className="border-t border-gray-200 pt-4 text-black">
                       <div className="flex justify-between text-2xl font-bold">
                         <span>Total</span>
-                        <span style={{ color: "#FF5C77" }}>${total.toFixed(2)}</span>
+                        <span style={{ color: "#FF5C77" }}>${formatPrice(total)}</span>
                       </div>
                     </div>
                   </div>
@@ -439,7 +513,7 @@ export default function CartPage() {
                       style={{ background: "linear-gradient(to right, #FF5C77, #FF5C77)" }}
                     >
                       <span className="flex items-center justify-center gap-2">
-                        Complete Order - ${total.toFixed(2)}
+                        Complete Order - ${formatPrice(total)}
                         <svg
                           className="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
                           fill="none"
