@@ -342,7 +342,7 @@ export default function CartSidebar({
               disabled={!selectedOption}
               className={`w-full py-2 rounded-md transition text-sm sm:text-base ${
                 selectedOption
-                  ? "bg-pink-600 text-white hover:bg-pink-700"
+                  ? "bg-[#FF5C77] text-white hover:bg-pink-700"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             >
@@ -433,7 +433,7 @@ export default function CartSidebar({
               <Link href="/checkout">
                 <button
                   onClick={onClose}
-                  className="w-full bg-pink-600 text-white py-2.5 sm:py-3 rounded-md hover:bg-pink-700 transition font-semibold text-sm sm:text-base"
+                  className="w-full bg-[#FF5C77] text-white py-2.5 sm:py-3 rounded-md hover:bg-pink-700 transition font-semibold text-sm sm:text-base"
                 >
                   Proceed to Checkout
                 </button>
