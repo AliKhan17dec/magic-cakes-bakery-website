@@ -47,6 +47,7 @@ export default function CartSidebar({
   const [quantity, setQuantity] = useState(1);
   const [addGreeting, setAddGreeting] = useState("");
   const [greetingText, setGreetingText] = useState("");
+  const [showAddSection, setShowAddSection] = useState(true);
 
   const optionsByCategory: Record<string, string[]> = {
     Cakes: [
@@ -72,8 +73,12 @@ export default function CartSidebar({
       if (savedCart) {
         setCartItems(JSON.parse(savedCart));
       }
+      // Reset to show add section when sidebar opens with a new product
+      if (productToAdd) {
+        setShowAddSection(true);
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, productToAdd]);
 
   useEffect(() => {
     if (productToAdd) {
@@ -81,6 +86,7 @@ export default function CartSidebar({
       setQuantity(1);
       setAddGreeting("");
       setGreetingText("");
+      setShowAddSection(true);
     }
   }, [productToAdd]);
 
@@ -151,8 +157,12 @@ export default function CartSidebar({
     setCartItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
 
+    // Hide the add section after adding to cart
+    setShowAddSection(false);
+
     if (onCartUpdate) onCartUpdate();
 
+    // Reset form but don't show the section anymore
     setSelectedOption("");
     setQuantity(1);
     setAddGreeting("");
@@ -163,6 +173,11 @@ export default function CartSidebar({
     const updatedCart = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+
+    // If all items are removed and we have a product to add, show the add section again
+    if (updatedCart.length === 0 && productToAdd) {
+      setShowAddSection(true);
+    }
 
     if (onCartUpdate) onCartUpdate();
   };
@@ -184,6 +199,10 @@ export default function CartSidebar({
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
 
     if (onCartUpdate) onCartUpdate();
+  };
+
+  const handleAddAnother = () => {
+    setShowAddSection(true);
   };
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -224,8 +243,8 @@ export default function CartSidebar({
           </button>
         </div>
 
-        {/* New Product Section */}
-        {productToAdd && (
+        {/* New Product Section - Only show when productToAdd exists AND showAddSection is true */}
+        {productToAdd && showAddSection && (
           <div className="p-4 sm:p-5 border-b flex-shrink-0">
             <div className="flex items-start gap-3 mb-4">
               <img
@@ -359,6 +378,18 @@ export default function CartSidebar({
             </p>
           ) : (
             <div className="space-y-3 sm:space-y-4">
+              {/* "Add Another" button when we have a product but add section is hidden */}
+              {productToAdd && !showAddSection && (
+                <div className="text-center mb-4">
+                  <button
+                    onClick={handleAddAnother}
+                    className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 transition font-medium text-sm"
+                  >
+                    + Add Another {productToAdd.name}
+                  </button>
+                </div>
+              )}
+              
               {cartItems.map((item, index) => (
                 <div
                   key={`${item.id}-${item.option}-${index}`}
