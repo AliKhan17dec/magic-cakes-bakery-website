@@ -115,7 +115,7 @@ const ContactPage: React.FC = () => {
           <div className="backdrop-blur-lg bg-white/10 rounded-lg shadow-md p-6 border border-white/20">
             <div className="w-full h-[520px] rounded-md overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1647488068363!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2913.725825100757!2d-79.0929676!3d43.089259199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d343f4b7d9d845%3A0xb86212572f8a6311!2sBakewell%20magicakes%20Bakery!5e0!3m2!1sen!2s!4v1762334448548!5m2!1sen!2s"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -137,17 +137,25 @@ const ContactPage: React.FC = () => {
       {/* Column 1: Contact Details */}
       <div className="space-y-3">
         <h4 className="font-bold text-lg text-red-600">Get In Touch</h4>
-        <p className="text-black">📧 info@cannoli-queens.com</p>
-        <p className="text-black">📞 +1 905-850-8880</p>
+        <p className="text-black">
+  <a href="mailto:Bakewellmagicakes2708@gmail.com" className="hover:underline">
+    Bakewellmagicakes2708@gmail.com
+  </a>
+</p>
+<p className="text-black">
+  <a href="tel:+16476761666" className="hover:underline">
+    +1 (647) 676-1666
+  </a>
+</p>
+
       </div>
 
       {/* Column 2: Address */}
       <div className="space-y-3">
         <h4 className="font-bold text-lg text-red-600">Visit Us</h4>
         <address className="text-black not-italic leading-relaxed">
-          200 Marycroft Ave #23<br />
-          Vaughan, Ontario<br />
-          L4L 5X9, Canada
+          Address is 5891 main street <br />
+          , Niagara falls , L2G4H4 
         </address>
       </div>
 

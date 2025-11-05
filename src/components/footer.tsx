@@ -13,7 +13,6 @@ const Footer = () => {
               <li><a href="./" className="hover:text-white transition-colors">Home</a></li>
               <li><a href="/catalog" className="hover:text-white transition-colors">Catalog</a></li>
               <li><a href="/contact-us" className="hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="cart" className="hover:text-white transition-colors">Cart</a></li>
             </ul>
           </div>
 
@@ -21,11 +20,10 @@ const Footer = () => {
           <div className="text-center">
             <h3 className="text-lg font-bold mb-4">CONTACT</h3>
             <div className="text-sm text-gray-300 space-y-2">
-              <p>info@cannoli queens.com</p>
-              <p>+1 905-850-8880</p>
-              <p>200 Marycroft Ave #23</p>
-              <p>Vaughan Ontario</p>
-              <p>L4L 5X9 Canada</p>
+              <p>Bakewellmagicakes2708@gmail.com</p>
+              <p>5891 main street , Niagara falls , L2G4H4 </p>
+              <p>+16476761666</p>
+              
             </div>
             {/* Optional: Uncomment if you want to add later */}
             {/* <button className="mt-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-full text-white text-sm font-medium flex items-center gap-2 mx-auto transition-colors">
@@ -46,7 +44,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 px-6">
           {/* Payment Icons - Wrap on mobile */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 md:mb-8">
+          {/* <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 md:mb-8">
             {[
               { src: "https://cdn.shopify.com/s/files/1/0000/0000/0000/products/amex.png?v=1640000000", alt: "American Express" },
               { src: "https://cdn.shopify.com/s/files/1/0000/0000/0000/products/apple-pay.png?v=1640000000", alt: "Apple Pay" },
@@ -64,7 +62,7 @@ const Footer = () => {
                 className="h-6 md:h-7 object-contain"
               />
             ))}
-          </div>
+          </div> */}
 
           {/* Copyright & Shopify */}
           <div className="text-xs text-gray-400 text-center md:text-left space-y-2 md:space-y-0 md:flex md:items-center md:justify-between">

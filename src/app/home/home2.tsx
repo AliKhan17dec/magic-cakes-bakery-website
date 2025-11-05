@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
 const CookieBiscottiSection = () => {
@@ -92,9 +93,11 @@ const CookieBiscottiSection = () => {
         <p className="mb-6">
           Perfect for every moment — enjoy with your favorite drink or share the joy with someone special.
         </p>
-        <button className="px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-colors">
-          SHOP NOW
-        </button>
+        <Link href="/catalog">
+  <button className="px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-colors">
+    SHOP NOW
+  </button>
+</Link>
       </div>
 
       {/* Navigation Dots */}
